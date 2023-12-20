@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import { Col, Form, Row } from 'react-bootstrap';
+import { Col, Form, Row, Table } from 'react-bootstrap';
 
 function Denominator() {
 
@@ -66,39 +66,39 @@ function Denominator() {
     return total
   }
 
-  
-  return(
+    return(
     <>
-      {Object.keys(inputFields).map((key, index) =>
-        { 
-          return(
-            <Row key={index} className="justify-content-center mt-3">
-              <Col sm={1}>
-                <Form.Label>₹{labels[key]} X</Form.Label>
-              </Col>
-              <Col sm={2}>
-                <Form.Control
-                  type="text"
+      <Table>
+        <thead>
+          <tr className='table-info'>
+            <th>Currency</th>
+            <th>Count</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          {Object.keys(inputFields).map((key, index) =>{
+            return(
+              <tr key={index}>
+                <td className='col-md-2'>₹{labels[key]} X</td>
+                <td className='col-md-2'><Form.Control
+                  type="number"
                   value={inputFields[key]}
                   placeholder={labels[key]}
                   onChange={e => handdleFormChange(key, e)}
-                /> 
-              </Col>
-              =<Col sm={2} className={`${amounts[key] && "bg-white text-dark"}`}>
-                {amounts[key]}
-              </Col>
-            </Row>  
-          )
-        }
-      )}
-      <Row className="justify-content-center mt-3 mb-3">
-        <Col md={3} className="text-white bg-dark mt-3 mr-3 ">
-          Total Notes: {totalNotes}
-        </Col>
-        <Col md={3} className="text-white bg-success mt-3 mr-3 pl-2">
-          Total Amount: {totalAmount}
-        </Col>
-      </Row>
+                  /> </td>
+                <td className={`${amounts[key] && "bg-info text-dark"} col-md-2`}>{amounts[key]}</td>  
+              </tr>
+            )
+          })}
+          <tr>
+            <td></td>
+            <td className='bg-dark text-white'>Total Notes: {totalNotes}</td>
+            <td className='bg-success text-white'>Total Amount: {totalAmount}</td>
+          </tr>
+        </tbody>
+      </Table>
+
     </>
   )
 }
