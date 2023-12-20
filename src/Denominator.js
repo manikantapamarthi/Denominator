@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import { Col, Form, Row, Table } from 'react-bootstrap';
+import { Form,Table } from 'react-bootstrap';
 
 function Denominator() {
 
@@ -9,7 +9,10 @@ function Denominator() {
     one_hundred: '',
     fifty: '',
     twenty: '',
-    ten: ''  
+    ten: '',
+    five_rupees: '',
+    two_repees: '',
+    one_rupee:''
   }
 
   const  labels = { 
@@ -19,7 +22,10 @@ function Denominator() {
     one_hundred: 100,
     fifty: 50,
     twenty: 20,
-    ten: 10 
+    ten: 10,
+    five_rupees: 5,
+    two_repees: 2,
+    one_rupee: 1
   }
 
   const [inputFields, setInputFields] = useState(notes)
@@ -86,7 +92,8 @@ function Denominator() {
                   value={inputFields[key]}
                   placeholder={labels[key]}
                   onChange={e => handdleFormChange(key, e)}
-                  /> </td>
+                  /> 
+                </td>
                 <td className={`${amounts[key] && "bg-info text-dark"} col-md-2`}>{amounts[key]}</td>  
               </tr>
             )
